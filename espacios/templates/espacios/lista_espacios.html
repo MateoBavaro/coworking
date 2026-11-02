@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Espacios Disponibles - Co-Working{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Espacios Disponibles</h2>
+
+<div class="row">
+    {% for espacio in espacios %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">{{ espacio.nombre }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ espacio.get_tipo_display }}</h6>
+                <p class="card-text">
+                    <strong>Capacidad:</strong> {{ espacio.capacidad }} personas<br>
+                    <strong>Precio por hora:</strong> ${{ espacio.precio_por_hora }}
+                </p>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-info">No hay espacios disponibles en este momento.</div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
